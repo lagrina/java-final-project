@@ -64,4 +64,12 @@ public class User {
 	public void setDiscount(Discount discount) {
 		this.discount = discount;
 	}
+	
+	public String getFullName() {
+		return this.fName + " " + this.lName;
+	}
+	
+	public void displayInfo() {
+		// I need the formatting diri, please DM!
+	}
 }

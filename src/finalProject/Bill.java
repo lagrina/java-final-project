@@ -55,4 +55,13 @@ public class Bill {
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
+	
+	public double getTotalBill() {
+		// Formula needed....
+		return 0;
+	}
+	
+	public void displayInfo() {
+		// Formatting needed...
+	}
 }

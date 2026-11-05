@@ -37,4 +37,13 @@ public class Discount {
 	public void setEligible(boolean isEligible) {
 		this.isEligible = isEligible;
 	}
+	
+	public double getTotalDiscount() {
+		// Formula needed...
+		return 0;
+	}
+	
+	public void displayInfo() {
+		// Formatting needed...
+	}
 }
