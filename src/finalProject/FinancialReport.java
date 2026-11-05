@@ -45,6 +45,7 @@ public class FinancialReport {
 	
 	public void displayFinancialReport() {
 		// Formatting needed
+		System.out.println("Test");
 	}
 	
 

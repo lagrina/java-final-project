@@ -5,6 +5,7 @@ public class Premium {
 	private String planName;
 	private String premiumBenefits;
 	private double annualSubscriptionFee;
+	
 	public String getPlanId() {
 		return planId;
 	}
