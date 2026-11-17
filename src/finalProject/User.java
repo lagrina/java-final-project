@@ -1,14 +1,26 @@
 package finalProject;
 
+// edited by jasey. 11/17/26 || 8pm
+import java.util.LinkedList;
+
 public class User {
 	private String fName;
 	private String lName;
 	private String userID;
 	private String address;
 	private Subscription subscription;
-	private Bill bills;
+	private LinkedList<Bill> bills = new LinkedList<Bill>();
 	private Discount discount;
 	
+
+	public User(String fName, String lName, String userID, String address, Subscription subscription) {
+		this.fName = fName;
+		this.lName = lName;
+		this.userID = userID;
+		this.address = address;
+		this.subscription = subscription;
+	}
+
 	public String getfName() {
 		return fName;
 	}
@@ -49,12 +61,28 @@ public class User {
 		this.subscription = subscription;
 	}
 	
-	public Bill getBills() {
+	public LinkedList<Bill> getBills() {
 		return bills;
 	}
 	
-	public void setBills(Bill bills) {
+	public void setBills(LinkedList<Bill> bills) {
 		this.bills = bills;
+	}
+
+	public void addBill(Bill bill) {
+		bills.add(bill);
+	}
+
+	public int getTotalBills() {
+		return bills.size();
+	}
+
+	public double getTotalAmountDue() {
+		double total = 0;
+		for (Bill b : bills) {
+			total += b.getAmountDue(); // pa add sa billlllll67
+		}
+		return total;
 	}
 	
 	public Discount getDiscount() {
@@ -71,5 +99,24 @@ public class User {
 	
 	public void displayInfo() {
 		// I need the formatting diri, please DM!
+		System.out.println("--User Information--");
+		System.out.println("Full Name:" + getFullName());
+		System.out.println("User ID: " + userID);
+		System.out.println("Address: " + address);
+
+		if (subscription != null) {
+			System.out.println("Subscription: " + subscription.getSubscriptionName());
+		} else {
+			System.out.println("Subscription: None");
+		}
+
+		System.out.println("Bills: ");
+		if (bills.isEmpty()) {
+			System.out.println(" no bills");
+		} else {
+			for (Bill b : bills) {
+				System.out.println(" - " + b.getBillId() + " | Total: " + b.getBillTotalAmount() + " | Due: " + b.getDueDate());
+			}
+		}
 	}
 }
