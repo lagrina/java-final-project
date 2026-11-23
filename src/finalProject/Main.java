@@ -4,7 +4,8 @@ import java.util.*;
 
 public class Main {
 	public static final Scanner input = new Scanner(System.in);
-
+	public static final LinkedList<User> users = new LinkedList<>();
+	
 	public static void main(String[] args) {
 		boolean running = true;
 
@@ -47,14 +48,14 @@ public class Main {
 		System.out.println();
 		System.out.println("1. User Management");
 		System.out.println("2. Generate bill");
-		System.out.println("3. View user and bills");
-		System.out.println("4. View plans and rates");
-		System.out.println("5. View user subscription and benefits");
-		System.out.println("6. View bills");
-		System.out.println("7. Search users (by ID)");
-		System.out.println("8. Collections");
-		System.out.println("9.");
-		System.out.println("10.");
+//		System.out.println("3. View user and bills");
+//		System.out.println("4. View plans and rates");
+//		System.out.println("5. View user subscription and benefits");
+//		System.out.println("6. View bills");
+//		System.out.println("7. Search users (by ID)");
+//		System.out.println("8. Collections");
+//		System.out.println("9.");
+//		System.out.println("10.");
 	}
 	
 	public static void manageUser() {
@@ -67,6 +68,9 @@ public class Main {
 		case 1:
 			addUser();
 			break;
+		case 2:
+			listUsers();
+			break;
 		default:
 			System.out.println("Invalid choice, try again!");
 		}
@@ -77,6 +81,8 @@ public class Main {
 		
 		System.out.print("First name: ");
 		String firstName = input.nextLine();
+		
+		input.nextLine();
 		
 		System.out.print("Last name: ");
 		String lastName = input.nextLine();
@@ -89,6 +95,27 @@ public class Main {
 		System.out.print("Town: ");
 		String town = input.nextLine();
 		
+		String userID = "USER" + generateID();
+		
+		users.add(new User(firstName, lastName, userID, barangay + " " + town));
+	}
+	
+	public static void listUsers() {
+		System.out.println("=-=-= Users List =-=-=");
+		
+		int counter = 1;
+		
+		for (User user : users) {
+			System.out.println(counter + ". " + user.getUserID());
+		}
+	}
+	
+	// UUID Generator
+	public static String generateID() {
+		UUID uuid = UUID.randomUUID();		
+		String generatedID = uuid.toString().toUpperCase().substring(23,29);
+
+		return generatedID;
 	}
 	
 

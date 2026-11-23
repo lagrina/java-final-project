@@ -57,8 +57,7 @@ public class Bill {
 	}
 	
 	public double calculateAdditionalFee() {
-		double additionalFee = this.subscriptionFee * 0.01;
-		return this.subtotalBill + additionalFee;
+		return this.subtotalBill;
 	}
 	
 	public double getTotalBill() {
