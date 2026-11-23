@@ -1,8 +1,8 @@
 package finalProject;
 
 public class Premium {
-	private String planId;
-	private String planName;
+	private String subscriptionId;
+	private String subscriptionName;
 	private String premiumBenefits;
 	private double annualSubscriptionFee;
 	
