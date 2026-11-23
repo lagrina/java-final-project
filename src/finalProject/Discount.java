@@ -48,16 +48,16 @@ public class Discount {
 	
 	public double getTotalDiscount() {
 		switch (discountType){
-			case isPwd;
+			case isPwd:
 			return 0.05;
 		
-		case isSenior;
+		case isSenior:
 			return 0.05;
 
-		case isSeasonal;
+		case isSeasonal:
 			return 0.10;
 		
-		default;	
+		default:	
 			return 0.0;
 		}
 	}
@@ -65,12 +65,14 @@ public class Discount {
 	public void displayInfo() {
 		
 	}
-}
 
-	public double calculateAnnualSeasonalDiscount(){
-
+	public double calculateAnnualSeasonalDiscount( ){
+		if(){
+			
+		}
 	}
 
 	public double calculateMonthlySeasonalDiscount(){
 		
 	}
+}
