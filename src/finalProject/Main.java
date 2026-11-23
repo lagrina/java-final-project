@@ -13,6 +13,7 @@ public class Main {
 			System.out.println("Choose an option: ");
 			switch(input.nextInt()) {
 			case 1:
+				manageUser();
 				break;
 			case 2:
 				break;
@@ -44,7 +45,7 @@ public class Main {
 
 	public static void displayMenu() {
 		System.out.println();
-		System.out.println("1. Register a new user");
+		System.out.println("1. User Management");
 		System.out.println("2. Generate bill");
 		System.out.println("3. View user and bills");
 		System.out.println("4. View plans and rates");
@@ -54,8 +55,26 @@ public class Main {
 		System.out.println("8. Collections");
 		System.out.println("9.");
 		System.out.println("10.");
-		
-
 	}
+	
+	public static void manageUser() {
+		System.out.println("=== User Management ===");
+		System.out.println("1. Add new user");
+		System.out.println("2. List users");
+		System.out.println("3. Delete existing user");
+		
+		switch(input.nextInt()) {
+		case 1:
+			addUser();
+			break;
+		default:
+			System.out.println("Invalid choice, try again!");
+		}
+	}
+	
+	public static void addUser() {
+		
+	}
+	
 
 }
