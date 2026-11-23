@@ -44,6 +44,6 @@ public class Discount {
 	}
 	
 	public void displayInfo() {
-		// Formatting needed...
+		// Formatting needed
 	}
 }
