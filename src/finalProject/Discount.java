@@ -1,11 +1,20 @@
 package finalProject;
 
 public class Discount {
-	private String discountId;
-	private String discountType;
-	private double discountRate;
 	private boolean isEligible;
+	private String discountId;
+	private DiscountType discountType;
+	private double discountRate;
 	
+	
+	public Discount(boolean isEligible, String discountId, DiscountType discountType, double discountRate){
+		this.isEligible = isEligible;
+		this.discountId = discountId;
+		this.discountType = discountType;
+		this.discountRate = discountRate;
+		
+	}
+
 	public String getDiscountId() {
 		return discountId;
 	}
@@ -14,14 +23,14 @@ public class Discount {
 		this.discountId = discountId;
 	}
 	
-	public String getDiscountType() {
+	public DiscountType getDiscountType(){
 		return discountType;
 	}
 	
-	public void setDiscountType(String discountType) {
+	public void setDiscountType(DiscountType discountType){
 		this.discountType = discountType;
 	}
-	
+
 	public double getDiscountRate() {
 		return discountRate;
 	}
@@ -39,11 +48,26 @@ public class Discount {
 	}
 	
 	public double getTotalDiscount() {
-		// Formula needed...
-		return 0;
+		switch (discountType){
+			case isPwd;
+			return 0.05;
+		
+		case isSenior;
+			return 0.05;
+
+		case isSeasonal;
+			return 0.10;
+		
+		default;	
+			return 0.0;
+		}
 	}
 	
 	public void displayInfo() {
-		// Formatting needed...
+		
 	}
+}
+
+public double calculateAnnualSeasonalDiscount(){
+
 }
