@@ -73,6 +73,21 @@ public class Main {
 	}
 	
 	public static void addUser() {
+		System.out.println("Add user:");
+		
+		System.out.print("First name: ");
+		String firstName = input.nextLine();
+		
+		System.out.print("Last name: ");
+		String lastName = input.nextLine();
+		
+		System.out.println("=-=-= Address =-=-=");
+		
+		System.out.print("Barangay: ");
+		String barangay = input.nextLine();
+		
+		System.out.print("Town: ");
+		String town = input.nextLine();
 		
 	}
 	
