@@ -11,14 +11,6 @@ public class Subscription {
         this.bills = bills;
     }
 
-    public String displayPremiumInfo(String premiumBenefits) {
-        return premiumBenefits;
-    }
-
-    public String displayRegularInfo(String regularBenefits) {
-        return regularBenefits;
-    }
-
     public void displayInfo() {
         System.out.println("Subscription Name: " + subscriptionName);
         System.out.println("Network Bandwidth: " + networkBandwidth);
