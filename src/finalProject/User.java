@@ -13,27 +13,26 @@ public class User {
 	private Discount discount;
 	
 
-	public User(String firstName, String lastName, String userID, String address, Subscription subscription) {
+	public User(String firstName, String lastName, String userID, String address) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userID = userID;
 		this.address = address;
-		this.subscription = subscription;
 	}
 
-	public String getfName() {
+	public String getFirstName() {
 		return firstName;
 	}
 	
-	public void setfName(String firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 	
-	public String getlName() {
+	public String getLastName() {
 		return lastName;
 	}
 	
-	public void setlName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 	
@@ -80,7 +79,7 @@ public class User {
 	public double getTotalAmountDue() {
 		double total = 0;
 		for (Bill b : bills) {
-			total += b.getAmountDue(); // pa add sa billlllll67
+//			total += b.getAmountDue(); // pa add sa billlllll67
 		}
 		return total;
 	}
