@@ -4,8 +4,8 @@ package finalProject;
 import java.util.LinkedList;
 
 public class User {
-	private String fName;
-	private String lName;
+	private String firstName;
+	private String lastName;
 	private String userID;
 	private String address;
 	private Subscription subscription;
@@ -13,28 +13,28 @@ public class User {
 	private Discount discount;
 	
 
-	public User(String fName, String lName, String userID, String address, Subscription subscription) {
-		this.fName = fName;
-		this.lName = lName;
+	public User(String firstName, String lastName, String userID, String address, Subscription subscription) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.userID = userID;
 		this.address = address;
 		this.subscription = subscription;
 	}
 
 	public String getfName() {
-		return fName;
+		return firstName;
 	}
 	
-	public void setfName(String fName) {
-		this.fName = fName;
+	public void setfName(String firstName) {
+		this.firstName = firstName;
 	}
 	
 	public String getlName() {
-		return lName;
+		return lastName;
 	}
 	
-	public void setlName(String lName) {
-		this.lName = lName;
+	public void setlName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	public String getUserID() {
@@ -94,7 +94,7 @@ public class User {
 	}
 	
 	public String getFullName() {
-		return this.fName + " " + this.lName;
+		return this.firstName + " " + this.lastName;
 	}
 	
 	public void displayInfo() {
