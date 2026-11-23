@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 public class AnnualRevenue {
 
-	private String revenueId;
 	private int year;
 	private double totalRevenue;
 	private LinkedList<Bill> bills;
