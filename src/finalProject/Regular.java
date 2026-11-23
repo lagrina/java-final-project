@@ -1,8 +1,8 @@
 package finalProject;
 
 public class Regular {
-	private String planId;
-	private String planName;
+	private String subscriptionId;
+	private String subscriptionName;
 	private double monthlySubscriptionFee;
 	
 	public String getPlanId() {
