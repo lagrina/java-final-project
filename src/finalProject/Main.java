@@ -183,7 +183,7 @@ public class Main {
 	}
 
 	// UUID Generator
-	public static String generateID() {
+	public String generateID() {
 		UUID uuid = UUID.randomUUID();		
 		String generatedID = uuid.toString().toUpperCase().substring(23,29);
 
