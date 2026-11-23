@@ -79,7 +79,7 @@ public class User {
 	public double getTotalAmountDue() {
 		double total = 0;
 		for (Bill b : bills) {
-//			total += b.getAmountDue(); // pa add sa billlllll
+//			total += b.getAmountDue(); // pa add sa billllll
 		}
 		return total;
 	}
