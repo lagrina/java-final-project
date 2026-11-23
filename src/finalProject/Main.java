@@ -140,12 +140,7 @@ public class Main {
 		} else {
 			for (User user : users) {
 				if (user.getUserID().equalsIgnoreCase(userID)) {
-
-					System.out.println("=-=-= User Information =-=-=");
-					System.out.println("User ID: " + user.getUserID());
-					System.out.println("First Name: " + user.getFirstName());
-					System.out.println("Last Name: " + user.getLastName());
-
+					user.displayInfo();
 					return;
 				}
 			}
