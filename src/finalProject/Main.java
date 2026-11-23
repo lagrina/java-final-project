@@ -165,7 +165,7 @@ public class Main {
 			User user = iterator.next();
 
 			if (user.getUserID().equalsIgnoreCase(userID)) {
-				System.out.print("Are you sure you want to delete " + user.getFirstName() + " (" + user.getUserID() + ")" + "? (Y/N): ");
+				System.out.print("Are you sure you want to delete " + user.getFullName() + " (" + user.getUserID() + ")" + "? (Y/N): ");
 				String confirm = input.nextLine();
 
 				if (confirm.equalsIgnoreCase("Y")) {
