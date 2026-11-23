@@ -7,12 +7,19 @@ public class Discount {
 	private double discountRate;
 	
 	
-	public Discount(boolean isEligible, String discountId, DiscountType discountType, double discountRate){
+	public Discount(boolean isEligible, String discountId, double discountRate, DiscountType discountType){
 		this.isEligible = isEligible;
 		this.discountId = discountId;
 		this.discountType = discountType;
 		this.discountRate = discountRate;
-		
+	}
+
+	public boolean isEligible() {
+		return isEligible;
+	}
+	
+	public void setEligible(boolean isEligible) {
+		this.isEligible = isEligible;
 	}
 
 	public String getDiscountId() {
@@ -22,14 +29,6 @@ public class Discount {
 	public void setDiscountId(String discountId) {
 		this.discountId = discountId;
 	}
-	
-	public DiscountType getDiscountType(){
-		return discountType;
-	}
-	
-	public void setDiscountType(DiscountType discountType){
-		this.discountType = discountType;
-	}
 
 	public double getDiscountRate() {
 		return discountRate;
@@ -38,13 +37,13 @@ public class Discount {
 	public void setDiscountRate(double discountRate) {
 		this.discountRate = discountRate;
 	}
-	
-	public boolean isEligible() {
-		return isEligible;
+
+		public DiscountType getDiscountType(){
+		return discountType;
 	}
 	
-	public void setEligible(boolean isEligible) {
-		this.isEligible = isEligible;
+	public void setDiscountType(DiscountType discountType){
+		this.discountType = discountType;
 	}
 	
 	public double getTotalDiscount() {
@@ -68,6 +67,10 @@ public class Discount {
 	}
 }
 
-public double calculateAnnualSeasonalDiscount(){
+	public double calculateAnnualSeasonalDiscount(){
 
-}
+	}
+
+	public double calculateMonthlySeasonalDiscount(){
+		
+	}
