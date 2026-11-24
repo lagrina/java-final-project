@@ -23,4 +23,3 @@ public enum Discount{
 		this.discountRate = discountRate;
 	}
 }
-
