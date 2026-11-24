@@ -1,6 +1,5 @@
 package finalProject;
 
-// edited by jasey. 11/17/26 || 8pm
 import java.util.LinkedList;
 
 public abstract class User {
