@@ -3,7 +3,7 @@ package finalProject;
 // edited by jasey. 11/17/26 || 8pm
 import java.util.LinkedList;
 
-public class User {
+public abstract class User {
 	private String firstName;
 	private String lastName;
 	private String userID;
@@ -96,6 +96,8 @@ public class User {
 		return this.firstName + " " + this.lastName;
 	}
 	
+	public abstract String getUserType();
+	
 	public void displayInfo() {
 		// I need the formatting diri, please DM!
 		System.out.println("--User Information--");
@@ -104,7 +106,7 @@ public class User {
 		System.out.println("Address: " + address);
 
 		if (subscription != null) {
-			System.out.println("Subscription: " + subscription.getSubscriptionName());
+//			System.out.println("Subscription: " + subscription.getSubscriptionName());
 		} else {
 			System.out.println("Subscription: None");
 		}
@@ -114,7 +116,7 @@ public class User {
 			System.out.println(" no bills");
 		} else {
 			for (Bill b : bills) {
-				System.out.println(" - " + b.getBillId() + " | Total: " + b.getBillTotalAmount() + " | Due: " + b.getDueDate());
+//				System.out.println(" - " + b.getBillId() + " | Total: " + b.getBillTotalAmount() + " | Due: " + b.getDueDate());
 			}
 		}
 	}
