@@ -1,28 +1,39 @@
 package finalProject;
 
+// edited by jasey. 11/17/26 || 8pm
+import java.util.LinkedList;
+
 public class User {
-	private String fName;
-	private String lName;
+	private String firstName;
+	private String lastName;
 	private String userID;
 	private String address;
 	private Subscription subscription;
-	private Bill bills;
+	private LinkedList<Bill> bills = new LinkedList<Bill>();
 	private Discount discount;
 	
-	public String getfName() {
-		return fName;
+
+	public User(String firstName, String lastName, String userID, String address) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userID = userID;
+		this.address = address;
+	}
+
+	public String getFirstName() {
+		return firstName;
 	}
 	
-	public void setfName(String fName) {
-		this.fName = fName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	
-	public String getlName() {
-		return lName;
+	public String getLastName() {
+		return lastName;
 	}
 	
-	public void setlName(String lName) {
-		this.lName = lName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	public String getUserID() {
@@ -49,12 +60,28 @@ public class User {
 		this.subscription = subscription;
 	}
 	
-	public Bill getBills() {
+	public LinkedList<Bill> getBills() {
 		return bills;
 	}
 	
-	public void setBills(Bill bills) {
+	public void setBills(LinkedList<Bill> bills) {
 		this.bills = bills;
+	}
+
+	public void addBill(Bill bill) {
+		bills.add(bill);
+	}
+
+	public int getTotalBills() {
+		return bills.size();
+	}
+
+	public double getTotalAmountDue() {
+		double total = 0;
+		for (Bill b : bills) {
+//			total += b.getAmountDue(); // pa add sa billllll
+		}
+		return total;
 	}
 	
 	public Discount getDiscount() {
@@ -66,10 +93,29 @@ public class User {
 	}
 	
 	public String getFullName() {
-		return this.fName + " " + this.lName;
+		return this.firstName + " " + this.lastName;
 	}
 	
 	public void displayInfo() {
 		// I need the formatting diri, please DM!
+		System.out.println("--User Information--");
+		System.out.println("Full Name:" + getFullName());
+		System.out.println("User ID: " + userID);
+		System.out.println("Address: " + address);
+
+		if (subscription != null) {
+			System.out.println("Subscription: " + subscription.getSubscriptionName());
+		} else {
+			System.out.println("Subscription: None");
+		}
+
+		System.out.println("Bills: ");
+		if (bills.isEmpty()) {
+			System.out.println(" no bills");
+		} else {
+			for (Bill b : bills) {
+				System.out.println(" - " + b.getBillId() + " | Total: " + b.getBillTotalAmount() + " | Due: " + b.getDueDate());
+			}
+		}
 	}
 }

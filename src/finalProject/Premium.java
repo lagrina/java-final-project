@@ -1,24 +1,24 @@
 package finalProject;
 
 public class Premium {
-	private String planId;
-	private String planName;
+	private String subscriptionId;
+	private String subscriptionName;
 	private String premiumBenefits;
 	private double annualSubscriptionFee;
 	
-	public String getPlanId() {
+	public String getsubscriptionId() {
 		return planId;
 	}
 	
-	public void setPlanId(String planId) {
+	public void setsubscriptionId(String planId) {
 		this.planId = planId;
 	}
 	
-	public String getPlanName() {
+	public String getsubscriptionName() {
 		return planName;
 	}
 	
-	public void setPlanName(String planName) {
+	public void setsubscriptionName(String planName) {
 		this.planName = planName;
 	}
 	

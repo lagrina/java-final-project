@@ -22,4 +22,21 @@ public enum Discount{
 		this.description = description;
 		this.discountRate = discountRate;
 	}
+	
+	public boolean isEligible() {
+		return isEligible;
+	}
+	
+	public void setEligible(boolean isEligible) {
+		this.isEligible = isEligible;
+	}
+	
+	public double getTotalDiscount() {
+		// Formula needed...
+		return 0;
+	}
+	
+	public void displayInfo() {
+		// Formatting needed...
+	}
 }

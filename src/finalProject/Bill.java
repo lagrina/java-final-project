@@ -56,8 +56,11 @@ public class Bill {
 		this.dueDate = dueDate;
 	}
 	
+	public double calculateAdditionalFee() {
+		return this.subtotalBill;
+	}
+	
 	public double getTotalBill() {
-		// Formula needed....
 		return 0;
 	}
 	
