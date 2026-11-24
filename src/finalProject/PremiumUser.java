@@ -1,7 +1,7 @@
 package finalProject;
 
 public class PremiumUser extends User {
-
+	
 	public PremiumUser(String firstName, String lastName, String userId, String address) {
 		super(firstName, lastName, userId, address);
 	}
@@ -10,7 +10,8 @@ public class PremiumUser extends User {
 		if (getSubscription() == null) {
 			return 0;
 		}
-		return (getSubscription().getMonthlyRate() * 12) * Discount.SEASONALPREMIUMDISCOUNT.getDiscountRate();
+		double annualRate = (this.subscription.getNetworkBandwidth().getNetworkRate());
+		return (annualRate * 12) * 0.1;
 	}
 
 	@Override
