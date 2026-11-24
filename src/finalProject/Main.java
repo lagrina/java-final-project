@@ -46,7 +46,7 @@ public class Main {
 				input.nextLine();
 			}
 		}
-	}
+	}				
 
 	public static void displayMenu() {
 		System.out.println();

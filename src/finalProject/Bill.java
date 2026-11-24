@@ -7,14 +7,14 @@ public class Bill {
 	private String dueDate;
 	private LinkedList<AnnualServiceRevenue> annualServiceRevenue;
 	private Subscription subscriptions;
-	
+
 	public Bill(String billId, String dueDate, LinkedList<AnnualServiceRevenue> annualServiceRevenue, Subscription subscriptions) {
 		this.billId = billId;
 		this.dueDate = dueDate;
 		this.annualServiceRevenue = annualServiceRevenue;
 		this.subscriptions = subscriptions;
 	}
-	
+
 	public String getBillId() {
 		return billId;
 	}
@@ -46,19 +46,19 @@ public class Bill {
 	public void setSubscriptions(Subscription subscriptions) {
 		this.subscriptions = subscriptions;
 	}
-	
+
 	public double getTotalBill() {
 		return 0;
 	}
-	
+
 	public double getDiscount() {
 		return 0;
 	}
-	
+
 	public double calculateAdditionalFee() {
 		return 0;
 	}
-	
+
 	public double getOutstandingBalance() {
 		return 0;
 	}

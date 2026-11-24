@@ -36,7 +36,7 @@ public class Subscription {
 	public void setBills(LinkedList<Bill> bills) {
 		this.bills = bills;
 	}
-	
+
 	public double getMonthlyRate() {
 		return networkBandwidth.getNetworkRate();
 	}
