@@ -18,6 +18,7 @@ public class Main {
 					manageUser();
 					break;
 				case 2:
+					viewServiceRevenue();
 					break;
 				case 3:
 					break;
@@ -196,6 +197,11 @@ public class Main {
 		}
 
 		System.out.println("User not found.");
+	}
+	
+	public static void viewServiceRevenue() {
+		System.out.println("=-=-=-=-= Annual Service Revenue =-=-=-=-=");
+		System.out.println("Input a year: ");
 	}
 
 	// UUID Generator
