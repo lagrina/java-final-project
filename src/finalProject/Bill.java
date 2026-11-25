@@ -5,7 +5,6 @@ import java.util.UUID;
 public class Bill {
 	private String billId;
 	private Subscription subscription;
-	private NetworkBandwidth networkBandwidth;
 	private Discount discount;
 	//this is applicable if there is an additional fee for late payemnt for regular customer
 	private String userType; 
@@ -49,13 +48,13 @@ public class Bill {
 // methods
 	public double getTotalBill(){
 		if(this.discount != Discount.NOTAVAILABLE && userType == "REGULAR"){ 
-			return calculateAdditionalFee() + this.networkBandwidth.getNetworkRate() - getTotalDiscount();
+			return calculateAdditionalFee() + this.subscription.getNetworkBandwidth().getNetworkRate() - getTotalDiscount();
 			//discounted and with additional fee 
 		}else if(this.discount == Discount.NOTAVAILABLE && userType == "REGULAR"){
-			return calculateAdditionalFee() + this.networkBandwidth.getNetworkRate();
+			return calculateAdditionalFee() + this.subscription.getNetworkBandwidth().getNetworkRate();
 			//with additional fee but not discounted
 		}else if(userType == "REGULAR"){
-			return this.networkBandwidth.getNetworkRate();
+			return this.subscription.getNetworkBandwidth().getNetworkRate();
 			// regular but not discounted and with no additional fee
 		}else if(this.discount == Discount.PWD || this.discount == Discount.SENIORCITIZEN && userType == "PREMIUM"){
 			return this.subscription.getUser().getSubscriptionRate() * 0.2;
@@ -71,22 +70,22 @@ public class Bill {
 
 	public double getTotalDiscount() { //reusable only for regular discount
 		if(this.discount == Discount.PWD || this.discount == Discount.SENIORCITIZEN){
-			return this.networkBandwidth.getNetworkRate() * 0.2;
+			return this.subscription.getNetworkBandwidth().getNetworkRate() * 0.2;
 		}else if (this.discount == Discount.SEASONALREGULARDISCOUNT){
-			return  this.networkBandwidth.getNetworkRate() * 0.05;
+			return  this.subscription.getNetworkBandwidth().getNetworkRate() * 0.05;
 		}else if(this.discount == Discount.SEASONALPREMIUMDISCOUNT){
-			return this.networkBandwidth.getNetworkRate() * 0.1;
+			return this.subscription.getNetworkBandwidth().getNetworkRate() * 0.1;
 		}else{
-			return this.networkBandwidth.getNetworkRate();
+			return this.subscription.getNetworkBandwidth().getNetworkRate();
 		}
 	}
 
 	public double calculateAdditionalFee(){
 		// for late payers and regular users only
-		double additionalFee = this.networkBandwidth.getNetworkRate();
+		double additionalFee = this.subscription.getNetworkBandwidth().getNetworkRate();
 		return additionalFee * 0.01;
 	}
-//check again this logic
+//check again this logic; if outstandingBalance >= getTotalBIll -> must pay the outstanding balance and the current bill
 	public double calculateOutstandingBalance(){
 		double totalAmountDue = this.getTotalBill() - this.amountPaid;
 		if(totalAmountDue == 0){
@@ -103,8 +102,8 @@ public class Bill {
 		}else{
 			System.out.println("Bill Id: R" + generateID());
 		}
-		System.out.println("Discount Type: " + this.networkBandwidth); 
-		System.out.println("Discount Rate: " + this.networkBandwidth.getNetworkRate());
+		System.out.println("Discount Type: " + this.discount.getDescription()); 
+		System.out.println("Discount Rate: " + this.discount.getDiscountRate());
 		System.out.println("Net Total Bill: " + this.getTotalBill());
 		System.out.println("Outstanding Balance: " + this.calculateOutstandingBalance());
 		System.out.println("Due Date: " + this.getDueDate());
@@ -113,7 +112,6 @@ public class Bill {
 	public static String generateID() {
 		UUID uuid = UUID.randomUUID();		
 		String generatedID = uuid.toString().toUpperCase().substring(23,29);
-
 		return generatedID;
 	}
 }
