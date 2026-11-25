@@ -6,6 +6,7 @@ public class Subscription {
 	private String subscriptionName;
 	private NetworkBandwidth networkBandwidth;
 	private LinkedList<Bill> bills;
+	private User user;
 
 	public Subscription(String subscriptionName, NetworkBandwidth networkBandwidth) {
 		this.subscriptionName = subscriptionName;
@@ -37,6 +38,14 @@ public class Subscription {
 		this.bills = bills;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public double getMonthlyRate() {
 		return networkBandwidth.getNetworkRate();
 	}
