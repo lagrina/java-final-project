@@ -11,7 +11,7 @@ public class Bill {
 	private double amountPaid;
 	private double outstandingBalance;
 	private String dueDate;
-//constructor 
+	//constructor 
 	public Bill(String billId, Discount discount, String userType, double amountPaid, double outstandingBalance, String dueDate) { //change the constructor parameters
 		this.billId = billId;
 		this.discount = discount;
@@ -20,7 +20,7 @@ public class Bill {
 		this.outstandingBalance = outstandingBalance;
 		this.dueDate = dueDate;
 	}
-// getters and setters
+	// getters and setters
 	public String getBillId() {
 		return billId;
 	}
@@ -45,37 +45,37 @@ public class Bill {
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
-// methods
+	// methods
 	public double getTotalBill(){
-		if(this.discount != Discount.NOTAVAILABLE && userType == "REGULAR"){ 
+		if (this.discount != Discount.NOTAVAILABLE && userType == "REGULAR") { 
 			return calculateAdditionalFee() + this.subscription.getNetworkBandwidth().getNetworkRate() - getTotalDiscount();
 			//discounted and with additional fee 
-		}else if(this.discount == Discount.NOTAVAILABLE && userType == "REGULAR"){
+		} else if (this.discount == Discount.NOTAVAILABLE && userType == "REGULAR") {
 			return calculateAdditionalFee() + this.subscription.getNetworkBandwidth().getNetworkRate();
 			//with additional fee but not discounted
-		}else if(userType == "REGULAR"){
+		} else if (userType == "REGULAR") {
 			return this.subscription.getNetworkBandwidth().getNetworkRate();
 			// regular but not discounted and with no additional fee
-		}else if(this.discount == Discount.PWD || this.discount == Discount.SENIORCITIZEN && userType == "PREMIUM"){
+		} else if (this.discount == Discount.PWD || this.discount == Discount.SENIORCITIZEN && userType == "PREMIUM") {
 			return this.subscription.getUser().getSubscriptionRate() * 0.2;
 			// discounted(premium and pwd) and premium user
-		}else if(this.discount == Discount.SEASONALPREMIUMDISCOUNT && userType == "PREMIUM"){
+		} else if (this.discount == Discount.SEASONALPREMIUMDISCOUNT && userType == "PREMIUM") {
 			return this.subscription.getUser().getSubscriptionRate() * 0.1;
 			// seasonal discount and premium user
-		}else{
+		} else {
 			return this.subscription.getUser().getSubscriptionRate();
 			// premium user but not discounted
 		}	
 	}
 
 	public double getTotalDiscount() { //reusable only for regular discount
-		if(this.discount == Discount.PWD || this.discount == Discount.SENIORCITIZEN){
+		if (this.discount == Discount.PWD || this.discount == Discount.SENIORCITIZEN) {
 			return this.subscription.getNetworkBandwidth().getNetworkRate() * 0.2;
-		}else if (this.discount == Discount.SEASONALREGULARDISCOUNT){
+		} else if (this.discount == Discount.SEASONALREGULARDISCOUNT){
 			return  this.subscription.getNetworkBandwidth().getNetworkRate() * 0.05;
-		}else if(this.discount == Discount.SEASONALPREMIUMDISCOUNT){
+		} else if (this.discount == Discount.SEASONALPREMIUMDISCOUNT){
 			return this.subscription.getNetworkBandwidth().getNetworkRate() * 0.1;
-		}else{
+		} else {
 			return this.subscription.getNetworkBandwidth().getNetworkRate();
 		}
 	}
@@ -85,21 +85,21 @@ public class Bill {
 		double additionalFee = this.subscription.getNetworkBandwidth().getNetworkRate();
 		return additionalFee * 0.01;
 	}
-//check again this logic; if outstandingBalance >= getTotalBIll -> must pay the outstanding balance and the current bill
-	public double calculateOutstandingBalance(){
+	//	check again this logic; if outstandingBalance >= getTotalBIll -> must pay the outstanding balance and the current bill
+	public double calculateOutstandingBalance() {
 		double totalAmountDue = this.getTotalBill() - this.amountPaid;
-		if(totalAmountDue == 0){
+		if (totalAmountDue == 0) {
 			return 0;
-		}else{
+		} else {
 			return totalAmountDue + getTotalBill();
 		}
 	}
 	public void displayInfo(){
 		//user info 
 		//subscription info
-		if(userType == "PREMIUM"){
+		if (userType == "PREMIUM") {
 			System.out.println("Bill ID: P" + generateID());
-		}else{
+		} else {
 			System.out.println("Bill Id: R" + generateID());
 		}
 		System.out.println("Discount Type: " + this.discount.getDescription()); 
@@ -108,7 +108,7 @@ public class Bill {
 		System.out.println("Outstanding Balance: " + this.calculateOutstandingBalance());
 		System.out.println("Due Date: " + this.getDueDate());
 	}
-// UUID Generator
+	// UUID Generator
 	public static String generateID() {
 		UUID uuid = UUID.randomUUID();		
 		String generatedID = uuid.toString().toUpperCase().substring(23,29);
