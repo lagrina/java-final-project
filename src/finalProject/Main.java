@@ -204,7 +204,7 @@ public class Main {
 		System.out.println("Input a year: ");
 	}
 
-	// UUID Generator
+	// UUID Generator 
 	public static String generateID() {
 		UUID uuid = UUID.randomUUID();		
 		String generatedID = uuid.toString().toUpperCase().substring(23,29);
