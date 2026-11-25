@@ -33,6 +33,7 @@ public class AnnualServiceRevenue {
 
 	public double getNetResult() {
 		totalRevenue = 0;
+		
 		for (Bill b : bills) {
 			totalRevenue += b.getTotalBill();
 		}
