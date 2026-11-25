@@ -7,7 +7,8 @@ public abstract class User {
 	private String lastName;
 	private String userID;
 	private String address;
-	private Subscription subscription;
+	// protected instead of private so that the subclasses can utilize the attributes, methods
+	protected Subscription subscription;
 	private LinkedList<Bill> bills = new LinkedList<Bill>();
 	private Discount discount;
 
@@ -78,7 +79,7 @@ public abstract class User {
 	public double getTotalAmountDue() {
 		double total = 0;
 		for (Bill b : bills) {
-			//			total += b.getAmountDue(); // pa add sa billllll
+			// total += b.getAmountDue(); pa add sa billllll
 		}
 		return total;
 	}
@@ -94,18 +95,19 @@ public abstract class User {
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}
-
+	// abstract methods
 	public abstract String getUserType();
 
+	public abstract double getSubscriptionRate();
+
 	public void displayInfo() {
-		// I need the formatting diri, please DM!
 		System.out.println("--User Information--");
 		System.out.println("Full Name:" + getFullName());
 		System.out.println("User ID: " + userID);
 		System.out.println("Address: " + address);
 
 		if (subscription != null) {
-			//			System.out.println("Subscription: " + subscription.getSubscriptionName());
+			// System.out.println("Subscription: " + subscription.getSubscriptionName());
 		} else {
 			System.out.println("Subscription: None");
 		}
@@ -115,7 +117,7 @@ public abstract class User {
 			System.out.println(" no bills");
 		} else {
 			for (Bill b : bills) {
-				//				System.out.println(" - " + b.getBillId() + " | Total: " + b.getBillTotalAmount() + " | Due: " + b.getDueDate());
+				// System.out.println(" - " + b.getBillId() + " | Total: " + b.getBillTotalAmount() + " | Due: " + b.getDueDate());
 			}
 		}
 	}
