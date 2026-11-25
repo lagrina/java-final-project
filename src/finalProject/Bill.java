@@ -100,6 +100,7 @@ public class Bill {
 		} else {
 			System.out.println("Bill Id: R" + generateID());
 		}
+		
 		System.out.println("Discount Type: " + this.discount.getDescription()); 
 		System.out.println("Discount Rate: " + this.discount.getDiscountRate());
 		System.out.println("Net Total Bill: " + this.getTotalBill());
