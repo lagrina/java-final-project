@@ -12,7 +12,6 @@ public abstract class User {
 	private LinkedList<Bill> bills = new LinkedList<Bill>();
 	private Discount discount;
 
-
 	public User(String firstName, String lastName, String userID, String address) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -95,14 +94,14 @@ public abstract class User {
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}
-	// abstract methods
+
 	public abstract String getUserType();
 
 	public abstract double getSubscriptionRate();
 
 	public void displayInfo() {
 		System.out.println("--User Information--");
-		System.out.println("Full Name:" + getFullName());
+		System.out.println("Full Name: " + getFullName());
 		System.out.println("User ID: " + userID);
 		System.out.println("Address: " + address);
 
