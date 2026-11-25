@@ -6,6 +6,10 @@ public class AnnualServiceRevenue {
 	private int year;
 	private double totalRevenue;
 	private LinkedList<Bill> bills;
+	
+	public AnnualServiceRevenue(int year) {
+		this.year = year;
+	}
 
 	public int getYear() {
 		return year;
