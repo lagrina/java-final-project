@@ -10,7 +10,6 @@ public abstract class User {
 	// protected instead of private so that the subclasses can utilize the attributes, methods
 	protected Subscription subscription;
 	private LinkedList<Bill> bills = new LinkedList<Bill>();
-	private Discount discount;
 
 	public User(String firstName, String lastName, String userID, String address) {
 		this.firstName = firstName;
@@ -82,15 +81,7 @@ public abstract class User {
 		}
 		return total;
 	}
-
-	public Discount getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(Discount discount) {
-		this.discount = discount;
-	}
-
+	
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}
