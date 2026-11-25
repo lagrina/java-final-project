@@ -11,7 +11,7 @@ public class Bill {
 	private double amountPaid;
 	private double outstandingBalance;
 	private String dueDate;
-	//constructor 
+	
 	public Bill(String billId, Discount discount, String userType, double amountPaid, double outstandingBalance, String dueDate) { //change the constructor parameters
 		this.billId = billId;
 		this.discount = discount;
@@ -20,7 +20,7 @@ public class Bill {
 		this.outstandingBalance = outstandingBalance;
 		this.dueDate = dueDate;
 	}
-	// getters and setters
+	
 	public String getBillId() {
 		return billId;
 	}
@@ -65,16 +65,15 @@ public class Bill {
 		return rate - (rate * discountRate);
 	}
 
-	public double getTotalDiscount() { //reusable only for regular discount
-		if (this.discount == Discount.PWD || this.discount == Discount.SENIORCITIZEN) {
-			return this.subscription.getNetworkBandwidth().getNetworkRate() * 0.2;
-		} else if (this.discount == Discount.SEASONALREGULARDISCOUNT){
-			return  this.subscription.getNetworkBandwidth().getNetworkRate() * 0.05;
-		} else if (this.discount == Discount.SEASONALPREMIUMDISCOUNT){
-			return this.subscription.getNetworkBandwidth().getNetworkRate() * 0.1;
-		} else {
-			return this.subscription.getNetworkBandwidth().getNetworkRate();
-		}
+	public double getTotalDiscount() {
+		double rate = this.subscription.getNetworkBandwidth().getNetworkRate();
+
+		return rate * switch (this.discount) {
+		case PWD, SENIORCITIZEN -> 0.20;
+		case SEASONALREGULARDISCOUNT -> 0.05;
+		case SEASONALPREMIUMDISCOUNT -> 0.10;
+		default -> 1.0;
+		};
 	}
 
 	public double calculateAdditionalFee(){
@@ -93,6 +92,8 @@ public class Bill {
 	}
 	public void displayInfo(){
 		//user info 
+		
+		
 		//subscription info
 		if (userType == "PREMIUM") {
 			System.out.println("Bill ID: P" + generateID());
