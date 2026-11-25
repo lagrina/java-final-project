@@ -47,22 +47,22 @@ public class Bill {
 	}
 	// methods
 	public double getTotalBill() {
-	    double rate = userType.equals("REGULAR")
-	        ? subscription.getNetworkBandwidth().getNetworkRate()
-	        : subscription.getUser().getSubscriptionRate();
+		double rate = userType.equals("REGULAR")
+				? subscription.getNetworkBandwidth().getNetworkRate()
+						: subscription.getUser().getSubscriptionRate();
 
-	    if (userType.equals("REGULAR")) rate += calculateAdditionalFee();
+		if (userType.equals("REGULAR")) rate += calculateAdditionalFee();
 
-	    double discountRate = 0;
-	    // EXPLANATION! if discount is PWD or SENIORCITIZEN, 20%. kung may SEASONALREGULARDISCOUNT, then muna
-	    if (discount == Discount.PWD || discount == Discount.SENIORCITIZEN)
-	        discountRate = 0.20;
-	    else if (discount == Discount.SEASONALREGULARDISCOUNT)
-	        discountRate = 0.05;
-	    else if (discount == Discount.SEASONALPREMIUMDISCOUNT)
-	        discountRate = 0.10;
+		double discountRate = 0;
+		// EXPLANATION! if discount is PWD or SENIORCITIZEN, 20%. kung may SEASONALREGULARDISCOUNT, then muna
+		if (discount == Discount.PWD || discount == Discount.SENIORCITIZEN)
+			discountRate = 0.20;
+		else if (discount == Discount.SEASONALREGULARDISCOUNT)
+			discountRate = 0.05;
+		else if (discount == Discount.SEASONALPREMIUMDISCOUNT)
+			discountRate = 0.10;
 
-	    return rate - (rate * discountRate);
+		return rate - (rate * discountRate);
 	}
 
 	public double getTotalDiscount() { //reusable only for regular discount
