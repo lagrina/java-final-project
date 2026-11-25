@@ -32,12 +32,18 @@ public class AnnualServiceRevenue {
 	}
 
 	public double getNetResult() {
+		totalRevenue = 0;
+		for (Bill b : bills) {
+			totalRevenue += b.getTotalBill();
+		}
 		return totalRevenue;
 	}
 
 	// generateReport, pwede? idk, dapat abi unambiguous kag simplified ang naming schemes
 	public void displayAnnualServiceRevenue() {
-		//...
+		System.out.println("Year: " + year);
+		System.out.println("Bills: " + bills.size());
+		System.out.printf("Net Result: Php %.2f%n", getNetResult());
 	}
 
 }
