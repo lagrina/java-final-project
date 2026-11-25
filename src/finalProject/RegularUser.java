@@ -10,6 +10,14 @@ public class RegularUser extends User {
 	public String getUserType() {
 		return "Regular";
 	}
+	
+	@Override
+	public double getSubscriptionRate() {
+		if (getSubscription() == null) {
+			return 0;
+		}
+		return subscription.getMonthlyRate();
+	}
 
 	@Override
 	public void displayInfo() {
