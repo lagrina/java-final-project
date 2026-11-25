@@ -46,26 +46,23 @@ public class Bill {
 		this.dueDate = dueDate;
 	}
 	// methods
-	public double getTotalBill(){
-		if (this.discount != Discount.NOTAVAILABLE && userType == "REGULAR") { 
-			return calculateAdditionalFee() + this.subscription.getNetworkBandwidth().getNetworkRate() - getTotalDiscount();
-			//discounted and with additional fee 
-		} else if (this.discount == Discount.NOTAVAILABLE && userType == "REGULAR") {
-			return calculateAdditionalFee() + this.subscription.getNetworkBandwidth().getNetworkRate();
-			//with additional fee but not discounted
-		} else if (userType == "REGULAR") {
-			return this.subscription.getNetworkBandwidth().getNetworkRate();
-			// regular but not discounted and with no additional fee
-		} else if (this.discount == Discount.PWD || this.discount == Discount.SENIORCITIZEN && userType == "PREMIUM") {
-			return this.subscription.getUser().getSubscriptionRate() * 0.2;
-			// discounted(premium and pwd) and premium user
-		} else if (this.discount == Discount.SEASONALPREMIUMDISCOUNT && userType == "PREMIUM") {
-			return this.subscription.getUser().getSubscriptionRate() * 0.1;
-			// seasonal discount and premium user
-		} else {
-			return this.subscription.getUser().getSubscriptionRate();
-			// premium user but not discounted
-		}	
+	public double getTotalBill() {
+	    double rate = userType.equals("REGULAR")
+	        ? subscription.getNetworkBandwidth().getNetworkRate()
+	        : subscription.getUser().getSubscriptionRate();
+
+	    if (userType.equals("REGULAR")) rate += calculateAdditionalFee();
+
+	    double discountRate = 0;
+	    // EXPLANATION! if discount is PWD or SENIORCITIZEN, 20%. kung may SEASONALREGULARDISCOUNT, then muna
+	    if (discount == Discount.PWD || discount == Discount.SENIORCITIZEN)
+	        discountRate = 0.20;
+	    else if (discount == Discount.SEASONALREGULARDISCOUNT)
+	        discountRate = 0.05;
+	    else if (discount == Discount.SEASONALPREMIUMDISCOUNT)
+	        discountRate = 0.10;
+
+	    return rate - (rate * discountRate);
 	}
 
 	public double getTotalDiscount() { //reusable only for regular discount
