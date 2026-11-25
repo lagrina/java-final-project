@@ -108,10 +108,26 @@ public class Main {
 
 		System.out.print("Town: ");
 		String town = input.nextLine();
+		
+		System.out.println("Select user type: ");
+		System.out.println("1. Premium");
+		System.out.println("2. Regular");
 
 		String userID = "USER" + generateID();
-
-		users.add(new User(firstName, lastName, userID, barangay + " " + town));
+		
+		switch(input.nextInt()) {
+		case 1:
+			users.add(new PremiumUser(firstName, lastName, userID, barangay + town));
+			break;
+		case 2:
+			users.add(new RegularUser(firstName, lastName, userID, barangay + town));
+			break;
+		default:
+			System.out.println("Invalid choice, try again.");
+			return;
+		}
+		
+		
 	}
 
 	public static void listUsers() {
