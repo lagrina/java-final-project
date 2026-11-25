@@ -23,14 +23,6 @@ public enum Discount{
 		this.discountRate = discountRate;
 	}
 
-	public boolean isEligible() {
-		return isEligible;
-	}
-
-	public void setEligible(boolean isEligible) {
-		this.isEligible = isEligible;
-	}
-
 	public double getTotalDiscount() {
 		// Formula needed...
 		return 0;
