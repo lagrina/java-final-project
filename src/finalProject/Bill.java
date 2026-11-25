@@ -7,12 +7,14 @@ public class Bill {
 	private String dueDate;
 	private LinkedList<AnnualServiceRevenue> annualServiceRevenue;
 	private Subscription subscriptions;
+	private String userType;
 
 	public Bill(String billId, String dueDate, LinkedList<AnnualServiceRevenue> annualServiceRevenue, Subscription subscriptions) {
 		this.billId = billId;
 		this.dueDate = dueDate;
 		this.annualServiceRevenue = annualServiceRevenue;
 		this.subscriptions = subscriptions;
+		this.userType = subscriptions.getUser().getUserType();
 	}
 
 	public String getBillId() {
