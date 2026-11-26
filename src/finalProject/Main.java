@@ -14,34 +14,15 @@ public class Main {
 				displayMenu();
 				System.out.print("Choose an option: ");
 				switch(input.nextInt()) {
-				case 1:
-					manageUser();
-					break;
-				case 2:
-					viewServiceRevenue();
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-				case 5:
-					break;
-				case 6:
-					break;
-				case 7:
-					break;
-				case 8:
-					break;
-				case 9:
-					break;
-				case 10:
-					break;
-				case 0:
-					break;
-				default:
-					System.out.println("Invalid choice, try again!");
-					break;
+				case 1 -> manageUsers(); // FINISHED
+				case 2 -> showBillingMenu(); // IN PROGRESS
+				case 3 -> showPlans(); // NOT STARTED
+				case 4 -> showSubscription(); // NOT STARTED
+				case 5 -> showAnnualRevenue(); // NOT STARTED
+				case 0 -> running = false;
+				default -> System.out.println("Invalid choice, try again!");
 				}
+
 			} catch (Exception e) {
 				System.out.println("Invalid input, try again!");
 				input.nextLine();
@@ -52,15 +33,14 @@ public class Main {
 	public static void displayMenu() {
 		System.out.println();
 		System.out.println("1. User Management");
-		System.out.println("2. Generate bill");
-		//		System.out.println("3. View bills"); //
-		//		System.out.println("4. View plans and rates");
-		//		System.out.println("5. View user subscription and benefits");
-		//		System.out.println("5. View Annual Service Revenue");	
-
+		System.out.println("2. Billing Options");
+		System.out.println("3. View plans and rate"); 
+		System.out.println("4. View User Subscription and Benefits");
+		System.out.println("5. View Annual Service Revenue");
+		System.out.println("0. Exit");
 	}
-
-	public static void manageUser() {
+	// Manage user part (1)
+	public static void manageUsers() {
 		System.out.println("\n=== User Management ===");
 		System.out.println("1. Add new user");
 		System.out.println("2. List users");
@@ -72,13 +52,13 @@ public class Main {
 
 		switch(input.nextInt()) {
 		case 1:
-			addUser();
+			createUser();
 			break;
 		case 2:
-			listUsers();
+			displayUsers();
 			break;
 		case 3:
-			displayUserInfo();
+			displayUserDetails();
 			break;
 		case 4:
 			deleteUser();
@@ -90,7 +70,7 @@ public class Main {
 		}
 	}
 
-	public static void addUser() {
+	public static void createUser() {
 		input.nextLine();
 		System.out.println("Add user:");
 
@@ -132,11 +112,11 @@ public class Main {
 		System.out.println("Address: " + barangay + " " + town);
 	}
 
-	public static void listUsers() {
+	public static void displayUsers() {
 
 		if (users.isEmpty()) {
 			System.out.println("User is empty, please add a user.");
-			manageUser();
+			manageUsers();
 		} else {
 			System.out.println("=-=-= Users List =-=-=");
 
@@ -149,11 +129,11 @@ public class Main {
 			System.out.println("Press enter to return to the menu.");
 			input.nextLine();
 			input.nextLine();
-			manageUser();
+			manageUsers();
 		}
 	}
 
-	public static void displayUserInfo() {
+	public static void displayUserDetails() {
 		input.nextLine();
 		System.out.print("Enter User ID (type cancel to return): ");
 		String userID = input.nextLine();
@@ -203,20 +183,94 @@ public class Main {
 
 		System.out.println("User not found.");
 	}
-<<<<<<< HEAD
 
-=======
-//billing options	
+	// billing options
+	private static void showBillingMenu() {
+		System.out.println("\n=== Billing Options ===");
+		System.out.println("1. Generate new bill");
+		System.out.println("2. Display bills for a user");
+		System.out.println("0. Back");
+
+		switch (input.nextInt()) {
+		case 1 -> generateBill();
+		case 2 -> displayUserBills();
+		default -> 
+		{
+		}
+		}
+	}
+
+	public static void generateBill(){
+		input.nextLine();
+		System.out.print("Enter User ID: ");
+		String userID = input.nextLine();
+		User selectedUser = null;
+
+		for (User user : users) {
+			if (user.getUserID().equalsIgnoreCase(userID)) {
+				selectedUser = user;
+				break;
+			}
+		}
+
+		if (selectedUser == null || selectedUser.getSubscription() == null) {
+			System.out.println("User not found or has no subscription.");
+			return;
+		}
+
+		System.out.println("Select discount:");
+
+		int i = 1;
+		for (Discount discounts : Discount.values()) {
+			System.out.println(i++ + "." + discounts);
+		}
+
+		int discountChoice = input.nextInt();
+		input.nextLine();
+
+		if (discountChoice < 1 || discountChoice > Discount.values().length) {
+			System.out.println("Invalid discount choice.");
+			return;
+		}
+
+		System.out.print("Due date: ");
+		String dueDate = input.nextLine();
+
+		//	selectedUser.setDiscount(Discount.values()[discountChoice - 1]);
+
+	}
+
+	private static void displayUserBills() {
+		input.nextLine();
+		System.out.print("Enter User ID: ");
+		String userID = input.nextLine();
+		for (User user : users) {
+			if (user.getUserID().equalsIgnoreCase(userID)) {
+				if (user.getBills().isEmpty()) {
+					System.out.println("No bills found.");
+				} else {
+					for (Bill bill : user.getBills()) {
+						bill.displayInfo();
+					}
+				}
+				return;
+			}
+		}
+		System.out.println("User not found.");
+	}
+
 	public static  void selectBillingOptions(){
 		input.nextLine();
 	}
-
-	public static void generateNewBillRecord(){
-
-	}
 	
->>>>>>> refs/remotes/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/main
-	public static void viewServiceRevenue() {
+	public static void showPlans() {
+		// NOT STARTED!
+	}
+
+	public static void showSubscription() {
+		// NOT STARTED!
+	}
+	public static void showAnnualRevenue() {
 		System.out.println("=-=-=-=-= Annual Service Revenue =-=-=-=-=");
 		System.out.println("Input a year: ");
 	}
