@@ -53,14 +53,11 @@ public class Main {
 		System.out.println();
 		System.out.println("1. User Management");
 		System.out.println("2. Generate bill");
-		//		System.out.println("3. View user and bills");
+		//		System.out.println("3. View bills"); //
 		//		System.out.println("4. View plans and rates");
 		//		System.out.println("5. View user subscription and benefits");
-		//		System.out.println("6. View bills");
-		//		System.out.println("7. Search users (by ID)");
-		//		System.out.println("8. Collections");
-		//		System.out.println("9.");
-		//		System.out.println("10.");
+		//		System.out.println("5. View Annual Service Revenue");	
+
 	}
 
 	public static void manageUser() {
@@ -197,6 +194,14 @@ public class Main {
 		}
 
 		System.out.println("User not found.");
+	}
+//billing options	
+	public static  void selectBillingOptions(){
+		input.nextLine();
+	}
+
+	public static void generateNewBillRecord(){
+
 	}
 	
 	public static void viewServiceRevenue() {
