@@ -1,30 +1,26 @@
 package finalProject;
 
 import java.util.LinkedList;
+import java.util.UUID;
 
 public class AnnualServiceRevenue {
-	private int year;
-	private double totalRevenue;
+	private String revenueId;
 	private LinkedList<Bill> bills;
+	private int targetYear;
 	
-	public AnnualServiceRevenue(int year) {
-		this.year = year;
+// constructor
+	public AnnualServiceRevenue(int targetYear) {
+		this.targetYear = targetYear;
+		this.bills = new LinkedList<>();
 	}
 
-	public int getYear() {
-		return year;
+// getters and setters 
+	public String getRevenueId() {
+		return revenueId;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
-	}
-
-	public double getTotalRevenue() {
-		return totalRevenue;
-	}
-
-	public void setTotalRevenue(double totalRevenue) {
-		this.totalRevenue = totalRevenue;
+	public void setRevenueId(String revenueId) {
+		this.revenueId = revenueId;
 	}
 
 	public LinkedList<Bill> getBills() {
@@ -35,20 +31,29 @@ public class AnnualServiceRevenue {
 		this.bills = bills;
 	}
 
-	public double getNetResult() {
-		totalRevenue = 0;
-		
-		for (Bill b : bills) {
-			totalRevenue += b.getTotalBill();
+// methods
+	//check the bill's year and if matches automatically add the bill
+	public void addBill(Bill bill){
+		if(bill.getYear() == this.targetYear){
+			this.bills.add(bill);
 		}
-		return totalRevenue;
+	}
+	//perform linear searching before using this method
+	public double calculateTotalRevenue(){
+		double total = 0.0;
+		for(Bill bill: bills){
+			total += bill.getTotalBill();
+		}
+		return total;
 	}
 
-	// generateReport, pwede? idk, dapat abi unambiguous kag simplified ang naming schemes
-	public void displayAnnualServiceRevenue() {
-		System.out.println("Year: " + year);
-		System.out.println("Bills: " + bills.size());
-		System.out.printf("Net Result: Php %.2f%n", getNetResult());
+	public void displayInfo(){
+		// display yearly service revenue here
 	}
-
+	// UUID Generator
+	public static String generateID() {
+		UUID uuid = UUID.randomUUID();		
+		String generatedID = uuid.toString().toUpperCase().substring(23,29);
+		return generatedID;
+	}
 }
