@@ -70,6 +70,7 @@ public class Main {
 		System.out.println("3. Fetch user info");
 		System.out.println("4. Delete existing user");
 		System.out.println("5. Back to main menu");
+		System.out.print("Select choice: ");
 
 
 		switch(input.nextInt()) {
@@ -109,13 +110,13 @@ public class Main {
 
 		System.out.print("Town: ");
 		String town = input.nextLine();
-		
-		System.out.println("Select user type: ");
+
 		System.out.println("1. Premium");
 		System.out.println("2. Regular");
+		System.out.print("Select user type: ");
 
 		String userID = "USER" + generateID();
-		
+
 		switch(input.nextInt()) {
 		case 1:
 			users.add(new PremiumUser(firstName, lastName, userID, barangay + town));
@@ -127,14 +128,18 @@ public class Main {
 			System.out.println("Invalid choice, try again.");
 			return;
 		}
-		
-		
+
+		System.out.println("Successfully added: ");
+		System.out.println("Name: " + firstName + " " + lastName);
+		System.out.println("User ID: " + userID);
+		System.out.println("Address: " + barangay + " " + town);
 	}
 
 	public static void listUsers() {
 
 		if (users.isEmpty()) {
 			System.out.println("User is empty, please add a user.");
+			manageUser();
 		} else {
 			System.out.println("=-=-= Users List =-=-=");
 
@@ -144,6 +149,10 @@ public class Main {
 				System.out.println(counter + ". " + user.getUserID());
 				counter++;
 			}
+			System.out.println("Press enter to return to the menu.");
+			input.nextLine();
+			input.nextLine();
+			manageUser();
 		}
 	}
 
@@ -178,7 +187,6 @@ public class Main {
 		Iterator<User> iterator = users.iterator();
 
 		while (iterator.hasNext()) {
-
 			User user = iterator.next();
 
 			if (user.getUserID().equalsIgnoreCase(userID)) {
@@ -198,7 +206,7 @@ public class Main {
 
 		System.out.println("User not found.");
 	}
-	
+
 	public static void viewServiceRevenue() {
 		System.out.println("=-=-=-=-= Annual Service Revenue =-=-=-=-=");
 		System.out.println("Input a year: ");
