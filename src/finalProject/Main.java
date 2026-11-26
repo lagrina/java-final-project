@@ -235,7 +235,7 @@ public class Main {
 
 		System.out.print("Due date: ");
 		String dueDate = input.nextLine();
-
+		// whatever
 		//	selectedUser.setDiscount(Discount.values()[discountChoice - 1]);
 
 	}
