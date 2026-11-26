@@ -10,15 +10,18 @@ public class Bill {
 	private String userType; 
 	private double amountPaid;
 	private double outstandingBalance;
-	private String dueDate;
+	private int year;
+	private int month;
+	private int date;
 	
-	public Bill(String billId, Discount discount, String userType, double amountPaid, double outstandingBalance, String dueDate) { //change the constructor parameters
+	public Bill(String billId, Discount discount, String userType, double amountPaid, double outstandingBalance, int year, int month, int date) { //change the constructor parameters
 		this.billId = billId;
 		this.discount = discount;
 		this.userType = subscription.getUser().getUserType();
 		this.amountPaid = amountPaid;
 		this.outstandingBalance = outstandingBalance;
-		this.dueDate = dueDate;
+		this.month = month;
+		this.date = date;
 	}
 	
 	public String getBillId() {
@@ -38,13 +41,38 @@ public class Bill {
 		this.subscription = subscription;
 	}
 
-	public String getDueDate() {
-		return dueDate;
+	public double getOutstandingBalance() {
+		return outstandingBalance;
 	}
 
-	public void setDueDate(String dueDate) {
-		this.dueDate = dueDate;
+	public void setOutstandingBalance(double outstandingBalance) {
+		this.outstandingBalance = outstandingBalance;
 	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getDate() {
+		return date;
+	}
+
+	public void setDate(int date) {
+		this.date = date;
+	}
+
 	// methods
 	public double getTotalBill() {
 		double rate = userType.equals("REGULAR")
@@ -90,10 +118,13 @@ public class Bill {
 			return totalAmountDue + getTotalBill();
 		}
 	}
+	
+	public String getDueDate(){
+		return year + " " + month + " " + date;	
+	}
+
 	public void displayInfo(){
 		//user info 
-		
-		
 		//subscription info
 		if (userType == "PREMIUM") {
 			System.out.println("Bill ID: P" + generateID());
