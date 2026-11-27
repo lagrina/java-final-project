@@ -7,15 +7,15 @@ public abstract class User {
 	private String lastName;
 	private String userID;
 	private String address;
-	// protected instead of private so that the subclasses can utilize the attributes, methods
 	protected Subscription subscription;
 	private LinkedList<Bill> bills = new LinkedList<Bill>();
 
-	public User(String firstName, String lastName, String userID, String address) {
+	public User(String firstName, String lastName, String userID, String address, Subscription subscription) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userID = userID;
 		this.address = address;
+		this.subscription = subscription;
 	}
 
 	public String getFirstName() {
@@ -76,12 +76,12 @@ public abstract class User {
 
 	public double getTotalAmountDue() {
 		double total = 0;
-		for (Bill b : bills) {
-			// total += b.getAmountDue(); pa add sa billllll
+		for (Bill bill : bills) {
+			total += bill.getOutstandingBalance();
 		}
 		return total;
 	}
-	
+
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}
@@ -106,9 +106,10 @@ public abstract class User {
 		if (bills.isEmpty()) {
 			System.out.println(" no bills");
 		} else {
-			for (Bill b : bills) {
-				// System.out.println(" - " + b.getBillId() + " | Total: " + b.getBillTotalAmount() + " | Due: " + b.getDueDate());
-			}`
+			for (Bill bill : bills) {
+				System.out.printf(" - %s | Total: Php %.2f | Balance: Php %.2f | Due: %s%n",
+						bill.getBillId(), bill.getTotalBill(), bill.getOutstandingBalance(), bill.getDueDate());
+			}
 		}
 	}
 }
