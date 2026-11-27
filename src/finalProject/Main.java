@@ -114,15 +114,15 @@ public class Main {
 		Subscription subscription = new Subscription(subscriptionID, bandwidthChoice);
 
 		switch(userType) {
-			case 1 -> users.add(new PremiumUser(firstName, lastName, userID, barangay + town, subscription)); 	
-			case 2 -> users.add(new RegularUser(firstName, lastName, userID, barangay + town, subscription));
+			case 1 -> users.add(new PremiumUser(firstName, lastName, userID, barangay + ", " + town + ", " + PROVINCE, subscription)); 	
+			case 2 -> users.add(new RegularUser(firstName, lastName, userID, barangay + ", " + town + ", " + PROVINCE, subscription));
 			default -> System.out.println("Invalid choice, try again.");
 		}
 
 		System.out.println("\nSuccessfully added: ");
 		System.out.println("Name: " + firstName + " " + lastName);
 		System.out.println("User ID: " + userID);
-		System.out.println("Address: " + barangay + " " + town);
+		System.out.println("Address: " + barangay + ", " + town + ", " + PROVINCE);
 		subscription.displayInfo();
 		
 		System.out.print("Press enter to return to main menu...");
