@@ -39,7 +39,7 @@ public class Subscription {
     public void setNetworkBandwidth(NetworkBandwidth networkBandwidth) {
         this.networkBandwidth = networkBandwidth;
     }
-//get all bills regardless of the year
+    //get all bills regardless of the year
     public LinkedList<Bill> getBills() {
         return bills;
     }
@@ -47,11 +47,11 @@ public class Subscription {
     public void setBills(LinkedList<Bill> bills) {
         this.bills = bills;
     }
-//add bills to the linkedlist
+    //add bills to the linkedlist
     public void addBill(Bill bill){
         bills.add(bill);
     }
-//filter bills by year
+    //filter bills by year
     public LinkedList<Bill> getBillByYear(int targetYear) {
         LinkedList<Bill> filteredBillsByYear = new LinkedList<>();
 
