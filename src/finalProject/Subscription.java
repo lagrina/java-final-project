@@ -6,13 +6,11 @@ public class Subscription {
     private String subscriptionName;
     private NetworkBandwidth networkBandwidth;
     private User user;
-    private LinkedList<Bill> bills;
 
     public Subscription(String subscriptionName, NetworkBandwidth networkBandwidth, User user) {
         this.subscriptionName = subscriptionName;
         this.networkBandwidth = networkBandwidth;
         this.user = user;
-        this.bills = new LinkedList<>();
     }
 
     
