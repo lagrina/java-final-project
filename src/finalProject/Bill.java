@@ -4,20 +4,21 @@ import java.util.UUID;
 
 public class Bill {
 	private String billId;
-	private Subscription subscription;
+	private User user;
 	private Discount discount;
-	//this is applicable if there is an additional fee for late payemnt for regular customer
-	private String userType; 
 	private double amountPaid;
 	private double outstandingBalance;
 	private int year;
 	private int month;
 	private int date;
+	private double discountAmount;
+	private double additionalFee;
+	private Subscription subscription;
 	
-	public Bill(String billId, Discount discount, String userType, double amountPaid, double outstandingBalance, int year, int month, int date) { //change the constructor parameters
+	public Bill(String billId, Discount discount, User user, double amountPaid, double outstandingBalance, int year, int month, int date) { //change the constructor parameters
 		this.billId = billId;
 		this.discount = discount;
-		this.userType = subscription.getUser().getUserType();
+		this.user = user;
 		this.amountPaid = amountPaid;
 		this.outstandingBalance = outstandingBalance;
 		this.month = month;
@@ -75,11 +76,11 @@ public class Bill {
 
 	// methods
 	public double getTotalBill() {
-		double rate = userType.equals("REGULAR")
+		double rate = user.equals("REGULAR")
 				? subscription.getNetworkBandwidth().getNetworkRate()
 						: subscription.getUser().getSubscriptionRate();
 
-		if (userType.equals("REGULAR")) rate += calculateAdditionalFee();
+		if (user.equals("REGULAR")) rate += calculateAdditionalFee();
 
 		double discountRate = 0;
 		// EXPLANATION! if discount is PWD or SENIORCITIZEN, 20%. kung may SEASONALREGULARDISCOUNT, then muna
@@ -124,14 +125,10 @@ public class Bill {
 	}
 
 	public void displayInfo(){
-		//user info 
-		//subscription info
-		if (userType == "PREMIUM") {
-			System.out.println("Bill ID: P" + generateID());
-		} else {
-			System.out.println("Bill Id: R" + generateID());
-		}
+		//user info
+		System.out.println("Customer: " + user.getFirstName() + "(" + user.getUserID() +")");
 		
+		//subscription info
 		System.out.println("Discount Type: " + this.discount.getDescription()); 
 		System.out.println("Discount Rate: " + this.discount.getDiscountRate());
 		System.out.println("Net Total Bill: " + this.getTotalBill());
