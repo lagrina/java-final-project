@@ -2,10 +2,10 @@ package finalProject;
 
 public class PremiumUser extends User {
 
-	public PremiumUser(String firstName, String lastName, String userId, String address) {
-		super(firstName, lastName, userId, address);
+	public PremiumUser(String firstName, String lastName, String userId, String address, Subscription subscription) {
+		super(firstName, lastName, userId, address, subscription);
 	}
-
+	
 	public double getSubscriptionRate() {
 		if (getSubscription() == null) {
 			return 0;
