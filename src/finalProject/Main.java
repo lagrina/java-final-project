@@ -6,7 +6,7 @@ public class Main {
 	public static final Scanner input = new Scanner(System.in);
 	public static final LinkedList<User> users = new LinkedList<>();
 	public static final String PROVINCE = Iloilo;
-// FUCK!!
+
 	public static void main(String[] args) {
 		boolean running = true;
 
