@@ -108,7 +108,7 @@ public abstract class User {
 		} else {
 			for (Bill b : bills) {
 				// System.out.println(" - " + b.getBillId() + " | Total: " + b.getBillTotalAmount() + " | Due: " + b.getDueDate());
-			}
+			}`
 		}
 	}
 }
