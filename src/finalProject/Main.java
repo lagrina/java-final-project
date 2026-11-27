@@ -5,6 +5,7 @@ import java.util.*;
 public class Main {
 	public static final Scanner input = new Scanner(System.in);
 	public static final LinkedList<User> users = new LinkedList<>();
+	public static final String PROVINCE = Iloilo;
 
 	public static void main(String[] args) {
 		boolean running = true;
@@ -74,6 +75,11 @@ public class Main {
 		input.nextLine();
 		System.out.println("Add user:");
 
+		System.out.println("1. Premium");
+		System.out.println("2. Regular");
+		System.out.print("Select user type: ");
+		String userType = input.nextLine();
+
 		System.out.print("First name: ");
 		String firstName = input.nextLine();
 
@@ -88,20 +94,16 @@ public class Main {
 		System.out.print("Town: ");
 		String town = input.nextLine();
 
-		System.out.println("1. Premium");
-		System.out.println("2. Regular");
-		System.out.print("Select user type: ");
-
 		String userID = "USER" + generateID();
-		
-		displayBandwidths();
-		System.out.print("Select a subscription: ");
-		String subscriptionChoice = input.nextLine();
+
+		System.out.println("Subscription Name: ");
+		String subscriptionName = input.nextLine();
+
 
 		switch(input.nextInt()) {
-		 	
-		case 2 -> users.add(new RegularUser(firstName, lastName, userID, barangay + town));
-		default -> System.out.println("Invalid choice, try again.");
+			case 1-> users.add(new PremiumUser(firstName, lastName, userID, barangay + town)); 	
+			case 2 -> users.add(new RegularUser(firstName, lastName, userID, barangay + town));
+			default -> System.out.println("Invalid choice, try again.");
 		}
 
 		System.out.println("Successfully added: ");
