@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 	public static final Scanner input = new Scanner(System.in);
 	public static final LinkedList<User> users = new LinkedList<>();
-	public static final String PROVINCE = Iloilo;
+	public static final String PROVINCE = "Iloilo";
 
 	public static void main(String[] args) {
 		boolean running = true;
@@ -42,12 +42,14 @@ public class Main {
 	}
 	// Manage user part (1)
 	public static void manageUsers() {
+		clearDisplay();
 		System.out.println("\n=== User Management ===");
-		System.out.println("1. Add new user");
+		System.out.println("1. Add new user and subscription");
 		System.out.println("2. List users");
 		System.out.println("3. Fetch user info");
-		System.out.println("4. Delete existing user");
-		System.out.println("5. Back to main menu");
+		System.out.println("4. Show user subscription");
+		System.out.println("5. Delete existing user");
+		System.out.println("0. Back to main menu");
 		System.out.print("Select choice: ");
 
 
@@ -62,9 +64,12 @@ public class Main {
 			displayUserDetails();
 			break;
 		case 4:
-			deleteUser();
+			displayUserSubscription();
 			break;
 		case 5:
+			deleteUser();
+			break;
+		case 0:
 			return;
 		default:
 			System.out.println("Invalid choice, try again!");
@@ -72,13 +77,16 @@ public class Main {
 	}
 
 	public static void createUser() {
+		clearDisplay();
 		input.nextLine();
 		System.out.println("Add user:");
 
 		System.out.println("1. Premium");
 		System.out.println("2. Regular");
 		System.out.print("Select user type: ");
-		String userType = input.nextLine();
+		int userType = input.nextInt();
+		
+		input.nextLine();
 
 		System.out.print("First name: ");
 		String firstName = input.nextLine();
@@ -94,22 +102,32 @@ public class Main {
 		System.out.print("Town: ");
 		String town = input.nextLine();
 
-		String userID = "USER" + generateID();
+		displayPlans();
+		System.out.print("Select plan: ");
+		int bandwidth = input.nextInt();
+		
+		NetworkBandwidth bandwidthChoice = NetworkBandwidth.values()[bandwidth - 1];
+		
+		String userID = generateID("USER");
+		String subscriptionID = generateID("SUB");
+		
+		Subscription subscription = new Subscription(subscriptionID, bandwidthChoice);
 
-		System.out.println("Subscription Name: ");
-		String subscriptionName = input.nextLine();
-
-
-		switch(input.nextInt()) {
-			case 1-> users.add(new PremiumUser(firstName, lastName, userID, barangay + town)); 	
-			case 2 -> users.add(new RegularUser(firstName, lastName, userID, barangay + town));
+		switch(userType) {
+			case 1 -> users.add(new PremiumUser(firstName, lastName, userID, barangay + town, subscription)); 	
+			case 2 -> users.add(new RegularUser(firstName, lastName, userID, barangay + town, subscription));
 			default -> System.out.println("Invalid choice, try again.");
 		}
 
-		System.out.println("Successfully added: ");
+		System.out.println("\nSuccessfully added: ");
 		System.out.println("Name: " + firstName + " " + lastName);
 		System.out.println("User ID: " + userID);
 		System.out.println("Address: " + barangay + " " + town);
+		subscription.displayInfo();
+		
+		System.out.print("Press enter to return to main menu...");
+		input.nextLine();
+		input.nextLine();
 	}
 
 	public static void displayUsers() {
@@ -123,7 +141,7 @@ public class Main {
 			int counter = 1;
 
 			for (User user : users) {
-				System.out.println(counter + ". " + user.getUserID());
+				System.out.println(counter + ". " + user.getUserID() + " (" + user.getFullName() + ")");
 				counter++;
 			}
 			System.out.println("Press enter to return to the menu.");
@@ -151,6 +169,29 @@ public class Main {
 			System.out.println("User not found.");
 		}
 	}
+	
+	public static void displayUserSubscription() {
+		input.nextLine();
+		System.out.print("Enter User ID (type cancel to return): ");
+		String userID = input.nextLine();
+
+		if (userID.equalsIgnoreCase("cancel")) {
+			return;
+		} else {
+			for (User user : users) {
+				if (user.getUserID().equalsIgnoreCase(userID)) {
+					System.out.println("User: " + user.getFullName() + " (" + user.getUserID() + ")");
+					user.getSubscription().displayInfo();;
+					System.out.println("Press enter to return to the menu.");
+					input.nextLine();
+					return;
+				}
+			}
+
+			System.out.println("User not found.");
+		}
+	}
+
 
 	public static void deleteUser() {
 		input.nextLine();
@@ -276,11 +317,11 @@ public class Main {
 	}
 
 	// UUID Generator 
-	public static String generateID() {
+	public static String generateID(String prefix) {
 		UUID uuid = UUID.randomUUID();		
 		String generatedID = uuid.toString().toUpperCase().substring(23,29);
 
-		return generatedID;
+		return prefix + generatedID;
 	}
 
 	/*
@@ -300,7 +341,13 @@ public class Main {
 		return null;
 	}
 	
-	public static void displayBandwidths() {
+	public static void clearDisplay() {
+		for (int i = 0; i < 100; i++) {
+			System.out.println();
+		}
+	}
+	
+	public static void displayPlans() {
 		int i = 1;
 	    for (NetworkBandwidth bandwidth : NetworkBandwidth.values()) {
 	        System.out.println(i + ". " + bandwidth);
