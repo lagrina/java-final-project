@@ -93,17 +93,15 @@ public class Main {
 		System.out.print("Select user type: ");
 
 		String userID = "USER" + generateID();
+		
+		displayBandwidths();
+		System.out.print("Select a subscription: ");
+		String subscriptionChoice = input.nextLine();
 
 		switch(input.nextInt()) {
-		case 1:
-			users.add(new PremiumUser(firstName, lastName, userID, barangay + town));
-			break;
-		case 2:
-			users.add(new RegularUser(firstName, lastName, userID, barangay + town));
-			break;
-		default:
-			System.out.println("Invalid choice, try again.");
-			return;
+		 	
+		case 2 -> users.add(new RegularUser(firstName, lastName, userID, barangay + town));
+		default -> System.out.println("Invalid choice, try again.");
 		}
 
 		System.out.println("Successfully added: ");
@@ -299,5 +297,12 @@ public class Main {
 
 		return null;
 	}
-
+	
+	public static void displayBandwidths() {
+		int i = 1;
+	    for (NetworkBandwidth bandwidth : NetworkBandwidth.values()) {
+	        System.out.println(i + ". " + bandwidth);
+	        i++;
+	    }
+	}
 }
